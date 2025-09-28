@@ -33,7 +33,7 @@ build/
 .vscode/
 
 .env
-scaffold_spring.py
+#scaffold_spring.py
 .venv/
 venv/
 __pycache__/
