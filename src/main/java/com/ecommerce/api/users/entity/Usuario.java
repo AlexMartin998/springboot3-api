@@ -1,9 +1,12 @@
 package com.ecommerce.api.users.entity;
 
+import com.ecommerce.api.auth.entity.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 
 @Data // getters/setters, toString, equals, hashCode, @RequiredArgsConstructor
@@ -20,6 +23,14 @@ public class Usuario {
     @Column(nullable = false, unique = true)
     private String email;
     private String password;
+
+    @Column(columnDefinition = "boolean default true")
+    private boolean active = true;
+
+
+    // Relación con UserRole (M:N hacia Role)
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = false)
+    private Set<UserRole> userRoles = new LinkedHashSet<>();
 
 
     @Column(updatable = false)
