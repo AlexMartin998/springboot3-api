@@ -16,6 +16,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     // @Autowired all FinalProps in auto by constructor thanks to @RequiredArgsConstructor
     private final UserRepository userRepository;
 
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Usuario user = userRepository.findByEmail(email).orElseThrow(
@@ -23,6 +24,5 @@ public class CustomUserDetailsService implements UserDetailsService {
         );
         return new UserDetailsImpl(user);
     }
-
 
 }
